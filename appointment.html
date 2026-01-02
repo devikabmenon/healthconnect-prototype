@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthConnect - Book Appointment</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 40px;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .appointment-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+
+        .doctor-card {
+            border: 2px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .doctor-card.selected {
+            border-color: #667eea;
+            background: #eef1ff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <h2>🏥 HealthConnect</h2>
+        <!-- ✅ FIXED -->
+        <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="appointment-card">
+        <h2>📅 Book Appointment</h2>
+
+        <form id="appointmentForm">
+            <label>Select Doctor</label>
+            <div class="doctor-card" onclick="selectDoctor(this)">Dr. Sarah Johnson</div>
+            <div class="doctor-card" onclick="selectDoctor(this)">Dr. Michael Chen</div>
+            <div class="doctor-card" onclick="selectDoctor(this)">Dr. Emily Davis</div>
+
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Time</label>
+                <select required>
+                    <option>09:00 AM</option>
+                    <option>10:00 AM</option>
+                    <option>11:00 AM</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Reason</label>
+                <textarea required></textarea>
+            </div>
+
+            <button class="submit-btn">Confirm Appointment</button>
+
+            <div class="success-message" id="successMessage">
+                ✅ Appointment booked successfully!
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function selectDoctor(el) {
+        document.querySelectorAll('.doctor-card')
+            .forEach(card => card.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    document.getElementById("appointmentForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        document.getElementById("successMessage").style.display = "block";
+
+        // ✅ FIXED REDIRECT
+        setTimeout(() => {
+            window.location.href = "dashboard.html";
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>
